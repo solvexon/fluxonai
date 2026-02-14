@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluxon AI | Decentralized Neural Power 2026</title>
+    <link rel="icon" type="image/png" href="fxncoin.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syncopate:wght@400;700&display=swap');
+        :root { --cyan: #00f2fe; --blue: #4facfe; --bg: #010409; }
+        body { background-color: var(--bg); color: #fff; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        .font-sync { font-family: 'Syncopate', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .text-gradient { background: linear-gradient(90deg, var(--cyan), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .bg-gradient-main { background: linear-gradient(90deg, var(--cyan), var(--blue)); }
+        
+        .coin-3d-wrap { perspective: 1200px; width: 260px; height: 260px; margin: auto; }
+        @media (min-width: 768px) { .coin-3d-wrap { width: 380px; height: 380px; } }
+        .coin-3d-inner { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: rotate3d 8s linear infinite; }
+       .coin-side { 
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    border-radius: 50%; 
+    backface-visibility: hidden; 
+}
+        .coin-front { background: url('fxncoin.png') no-repeat center; background-size: cover; }
+        .coin-back { background: url('fxncoin.png') no-repeat center; background-size: cover; transform: rotateY(180deg); }
+        @keyframes rotate3d { 0% { transform: rotateY(0deg); } 100% { transform: rotateY(360deg); } }
+        
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        .roadmap-border { border-left: 2px dashed rgba(0, 242, 254, 0.2); }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed w-full z-[100] px-4 py-4 md:px-10 glass border-none">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="fxncoin.png" class="w-10 h-10 rounded-full" alt="L">
+                <span class="text-xl font-bold font-sync tracking-tighter uppercase">FLUXON <span class="text-gradient">AI</span></span>
+            </div>
+            <div class="hidden lg:flex gap-10 text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                <a href="#about" class="hover:text-cyan-400">Mission</a>
+                <a href="#presale" class="hover:text-cyan-400">Presale</a>
+                <a href="#tokenomics" class="hover:text-cyan-400">Metrics</a>
+                <a href="#roadmap" class="hover:text-cyan-400">Roadmap</a>
+            </div>
+            <button id="connectBtn" class="bg-gradient-main px-6 py-2 rounded-full font-bold text-black text-[10px] md:text-xs uppercase transition">Connect Wallet</button>
+        </div>
+    </nav>
+
+    <section class="relative pt-40 pb-20 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center text-center lg:text-left">
+            <div data-aos="fade-right">
+                <span class="px-5 py-1 rounded-full border border-cyan-500/30 text-cyan-400 text-[10px] font-bold uppercase tracking-[4px] bg-cyan-500/5">DePIN Matrix 2026</span>
+                <h1 class="text-5xl md:text-8xl font-bold mt-6 leading-[0.9] font-sync uppercase tracking-tighter">Neural <br><span class="text-gradient">Power</span></h1>
+                <p class="text-gray-400 mt-8 text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Decentralized infrastructure for AI model hosting, GPU rentals, and neural research. Scalable, secure, and limited to 6.3 Million Nodes.
+                </p>
+                <div class="mt-10 flex flex-wrap justify-center lg:justify-start gap-5">
+                    <a href="#presale" class="bg-gradient-main text-black px-12 py-4 rounded-2xl font-bold uppercase tracking-widest text-sm shadow-2xl">Join Sale</a>
+                    <button onclick="addTokenToWallet()" class="border border-white/10 px-8 py-4 rounded-2xl font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition flex items-center gap-2">
+                        <i class="fas fa-plus"></i> Add Token
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-center" data-aos="zoom-in">
+                <div class="coin-3d-wrap">
+                    <div class="coin-3d-inner">
+                        <div class="coin-side coin-front"></div>
+                        <div class="coin-side coin-back"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="presale" class="py-10 px-4">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 glass p-8 md:p-12 rounded-[40px] border-cyan-500/20 shadow-2xl relative overflow-hidden">
+                <h2 class="text-3xl font-bold font-sync mb-2 uppercase">Contribution <span class="text-gradient">Gate</span></h2>
+                <p id="displayPrice" class="text-[11px] font-bold text-cyan-400 mb-10 uppercase tracking-[4px] animate-pulse italic">Connecting to Node...</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="space-y-6">
+                        <div class="bg-black/60 p-6 rounded-3xl border border-white/5">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Pay USDT (BSC)</label>
+                            <input type="number" id="usdtInput" class="bg-transparent w-full text-3xl font-bold focus:outline-none mt-2" placeholder="0.0">
+                        </div>
+                        <div class="bg-black/60 p-6 rounded-3xl border border-cyan-500/10">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Receive $FXN</label>
+                            <input type="text" id="fxnOutput" class="bg-transparent w-full text-3xl font-bold text-cyan-400 focus:outline-none mt-2" placeholder="0.0" readonly>
+                        </div>
+                        <button id="buyBtn" class="w-full bg-gradient-main py-5 rounded-3xl font-bold text-black text-xl uppercase tracking-widest hover:scale-[1.01] transition">Exchange Now</button>
+                    </div>
+
+                    <div class="glass p-8 rounded-[32px] border-white/5 flex flex-col justify-center">
+                        <h3 class="text-cyan-400 font-bold text-xs uppercase mb-4 tracking-widest">Neural Affiliate</h3>
+                        <p class="text-[11px] text-gray-400 leading-relaxed mb-6">Receive 10% instant USDT rewards directly to your wallet for every referral purchase.</p>
+                        <div class="relative">
+                            <input type="text" id="refLink" class="bg-black/80 w-full text-[10px] p-4 rounded-xl border border-white/10 focus:outline-none" placeholder="Not Connected" readonly>
+                            <button onclick="copyRef()" class="absolute right-2 top-2 bg-white/10 px-4 py-2 rounded-lg text-[9px] font-bold uppercase">Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass p-10 rounded-[40px] border-white/10 flex flex-col justify-between shadow-2xl">
+                <div>
+                    <h3 class="text-xl font-bold font-sync uppercase mb-10 text-gradient">Dashboard</h3>
+                    <div class="space-y-8">
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5 text-center">
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Your $FXN Balance</p>
+                            <p id="userBalance" class="text-4xl font-bold font-sync tracking-tighter">0.00</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5 text-center">
+                            <p class="text-[10px] text-gray-500 uppercase font-bold tracking-widest mb-1">Current Value</p>
+                            <p id="userValue" class="text-3xl font-bold text-cyan-400 tracking-tighter">$0.00</p>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="addTokenToWallet()" class="mt-8 w-full border border-cyan-500/30 py-4 rounded-2xl font-bold text-[10px] uppercase tracking-widest hover:bg-cyan-500/10 transition">
+                    <i class="fas fa-wallet mr-2"></i> Sync FXN to Wallet
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div data-aos="fade-right">
+                <h2 class="text-4xl md:text-6xl font-bold font-sync uppercase mb-10 leading-tight tracking-tighter">Mission <span class="text-gradient">Control</span></h2>
+                <div class="space-y-10">
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-400 shrink-0"><i class="fas fa-brain"></i></div>
+                        <div><h4 class="font-bold uppercase text-xs mb-2">Neural Vision</h4><p class="text-gray-400 text-sm">Empowering humanity through decentralized AI networks, breaking the monopoly of tech giants.</p></div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0"><i class="fas fa-globe"></i></div>
+                        <div><h4 class="font-bold uppercase text-xs mb-2">Global Mission</h4><p class="text-gray-400 text-sm">Providing low-cost GPU hosting and neural training nodes for developers across the globe.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-6" data-aos="fade-left">
+                <div class="glass p-8 rounded-3xl border-l-4 border-cyan-500"><i class="fas fa-server text-3xl mb-4 text-cyan-400"></i><h5 class="font-bold uppercase text-[10px] tracking-widest">GPU Nodes</h5></div>
+                <div class="glass p-8 rounded-3xl border-l-4 border-blue-500"><i class="fas fa-code text-3xl mb-4 text-blue-400"></i><h5 class="font-bold uppercase text-[10px] tracking-widest">AI Agency</h5></div>
+                <div class="glass p-8 rounded-3xl border-l-4 border-indigo-500"><i class="fas fa-shield text-3xl mb-4 text-indigo-400"></i><h5 class="font-bold uppercase text-[10px] tracking-widest">Secured</h5></div>
+                <div class="glass p-8 rounded-3xl border-l-4 border-purple-500"><i class="fas fa-fire text-3xl mb-4 text-purple-400"></i><h5 class="font-bold uppercase text-[10px] tracking-widest">Deflation</h5></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tokenomics" class="py-24 px-6 bg-white/[0.01]">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl font-bold font-sync mb-20 uppercase tracking-widest">Token <span class="text-gradient">Metrics</span></h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center text-left">
+                <div class="max-w-[380px] mx-auto" data-aos="zoom-in">
+                    <canvas id="tokenChart"></canvas>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="glass p-8 rounded-3xl"><p class="text-[9px] text-gray-500 uppercase font-bold mb-1">Max Supply</p><p class="text-3xl font-bold font-sync text-gradient">6.3M</p></div>
+                    <div class="glass p-8 rounded-3xl"><p class="text-[9px] text-gray-500 uppercase font-bold mb-1">Presale Allotment</p><p class="text-3xl font-bold font-sync text-cyan-400">125K</p></div>
+                    <div class="glass p-8 rounded-3xl"><p class="text-[9px] text-gray-500 uppercase font-bold mb-1">Transaction Burn</p><p class="text-3xl font-bold font-sync text-red-500">0.2%</p></div>
+                    <div class="glass p-8 rounded-3xl"><p class="text-[9px] text-gray-500 uppercase font-bold mb-1">Network</p><p class="text-3xl font-bold font-sync">BSC</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="roadmap" class="py-24 px-6 max-w-5xl mx-auto">
+        <h2 class="text-4xl font-bold text-center font-sync mb-24 uppercase tracking-widest">Project <span class="text-gradient">Timeline</span></h2>
+        <div class="space-y-16 roadmap-border">
+            <div class="relative pl-12" data-aos="fade-up">
+                <div class="absolute -left-[11px] top-0 w-5 h-5 bg-cyan-400 rounded-full shadow-[0_0_20px_#00f2fe]"></div>
+                <h3 class="text-xl font-bold font-sync uppercase text-cyan-400 mb-2">Phase 01: The Spark</h3>
+                <p class="text-gray-400 text-lg leading-relaxed">Contract deployment, 0.2% Hyper-Burn activation, Phase 1 Presale, and Community genesis on X/Telegram.</p>
+            </div>
+            <div class="relative pl-12 opacity-40" data-aos="fade-up">
+                <div class="absolute -left-[11px] top-0 w-5 h-5 bg-gray-700 rounded-full"></div>
+                <h3 class="text-xl font-bold font-sync uppercase mb-2">Phase 02: Expansion</h3>
+                <p class="text-gray-400 text-lg leading-relaxed">YouTube marketing blitz, Google Ad campaigns, CoinMarketCap listing, and Phase 2 pricing adjustment.</p>
+            </div>
+            <div class="relative pl-12 opacity-40" data-aos="fade-up">
+                <div class="absolute -left-[11px] top-0 w-5 h-5 bg-gray-700 rounded-full"></div>
+                <h3 class="text-xl font-bold font-sync uppercase mb-2">Phase 03: Listing</h3>
+                <p class="text-gray-400 text-lg leading-relaxed">PancakeSwap official launch. Deployment of Fluxon AI Cloud Portal beta for GPU renting.</p>
+            </div>
+            <div class="relative pl-12 opacity-40" data-aos="fade-up">
+                <div class="absolute -left-[11px] top-0 w-5 h-5 bg-gray-700 rounded-full"></div>
+                <h3 class="text-xl font-bold font-sync uppercase mb-2">Phase 04: Dominance</h3>
+                <p class="text-gray-400 text-lg leading-relaxed">B2B Software agency integration, Fluxon Neural Research Labs launch, and multi-chain expansion.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 border-t border-white/5 text-center px-6">
+        <div class="flex justify-center gap-10 mb-12 text-2xl text-gray-500">
+            <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-github"></i></a>
+        </div>
+        <p class="text-[10px] text-gray-600 uppercase tracking-[6px] mb-4 italic">Fluxon AI Protocol Ecosystem © 2026</p>
+        <div class="glass p-6 rounded-2xl max-w-2xl mx-auto border-dashed border-white/5">
+            <p class="text-[8px] font-mono text-gray-600 break-all uppercase leading-loose">
+                TOKEN CONTRACT: 0x44c883a0fA9103f55e1801512D2Abe39AfD85218 <br>
+                SALE CONTRACT: 0x0a104c08a063AD8DdbBd1F9D76242bBFa903e604
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        const FXN_ADDR = "0x44c883a0fA9103f55e1801512D2Abe39AfD85218";
+        const PRESALE_ADDR = "0x0a104c08a063AD8DdbBd1F9D76242bBFa903e604";
+        const USDT_ADDR = "0x55d398326f99059ff775485246999027b3197955";
+        
+        const FXN_ABI = ["function balanceOf(address a) public view returns (uint256)"];
+        const USDT_ABI = ["function approve(address s, uint256 a) public returns (bool)"];
+        const PRE_ABI = ["function buyTokens(uint256 a, address r) external", "function tokenPrice() public view returns (uint256)"];
+
+        let provider, signer, userAddress, currentPrice = 1.0;
+
+        async function syncNetwork() {
+            try {
+                const rpc = new ethers.providers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
+                const preCont = new ethers.Contract(PRESALE_ADDR, PRE_ABI, rpc);
+                const rawP = await preCont.tokenPrice();
+                currentPrice = ethers.utils.formatUnits(rawP, 18);
+                document.getElementById('displayPrice').innerText = `LIVE RATE: 1 FXN = ${currentPrice} USDT`;
+
+                if(userAddress) {
+                    const fxnCont = new ethers.Contract(FXN_ADDR, FXN_ABI, rpc);
+                    const bal = await fxnCont.balanceOf(userAddress);
+                    const formatted = ethers.utils.formatUnits(bal, 18);
+                    document.getElementById('userBalance').innerText = parseFloat(formatted).toLocaleString(undefined, {minimumFractionDigits: 2});
+                    document.getElementById('userValue').innerText = "$" + (formatted * currentPrice).toLocaleString(undefined, {minimumFractionDigits: 2});
+                }
+            } catch(e) { console.error(e); }
+        }
+        syncNetwork();
+        setInterval(syncNetwork, 15000);
+
+        async function connect() {
+            if(window.ethereum) {
+                provider = new ethers.providers.Web3Provider(window.ethereum);
+                await provider.send("eth_requestAccounts", []);
+                signer = provider.getSigner();
+                userAddress = await signer.getAddress();
+                document.getElementById('connectBtn').innerText = userAddress.slice(0,6)+"..."+userAddress.slice(-4);
+                document.getElementById('refLink').value = window.location.origin + window.location.pathname + "?ref=" + userAddress;
+                syncNetwork();
+            }
+        }
+        document.getElementById('connectBtn').onclick = connect;
+
+        document.getElementById('usdtInput').oninput = (e) => {
+            const v = e.target.value;
+            document.getElementById('fxnOutput').value = v > 0 ? (v / currentPrice).toFixed(2) : "0.0";
+        };
+
+        document.getElementById('buyBtn').onclick = async () => {
+            if(!userAddress) return alert("Please connect wallet!");
+            const val = document.getElementById('usdtInput').value;
+            if(val < 5 || val > 500) return alert("Limit: 5 - 500 USDT");
+            
+            try {
+                const btn = document.getElementById('buyBtn');
+                const amtWei = ethers.utils.parseUnits(val.toString(), 18);
+                const usdt = new ethers.Contract(USDT_ADDR, USDT_ABI, signer);
+                const pre = new ethers.Contract(PRESALE_ADDR, PRE_ABI, signer);
+                const ref = new URLSearchParams(window.location.search).get('ref') || "0x0000000000000000000000000000000000000000";
+
+                btn.innerText = "Approving USDT...";
+                const tx1 = await usdt.approve(PRESALE_ADDR, amtWei);
+                await tx1.wait();
+
+                btn.innerText = "Processing Swap...";
+                const tx2 = await pre.buyTokens(amtWei, ref);
+                await tx2.wait();
+                
+                alert("Success! Check your wallet.");
+                btn.innerText = "Exchange Now";
+                syncNetwork();
+            } catch(e) { alert("Error in transaction."); btn.innerText = "Exchange Now"; }
+        };
+
+        async function addTokenToWallet() {
+            if(!window.ethereum) return;
+            try {
+                await window.ethereum.request({
+                    method: 'wallet_watchAsset',
+                    params: {
+                        type: 'ERC20',
+                        options: {
+                            address: FXN_ADDR,
+                            symbol: 'FXN',
+                            decimals: 18,
+                            image: window.location.origin + '/fxncoin.png',
+                        },
+                    },
+                });
+            } catch (e) { console.error(e); }
+        }
+
+        function copyRef() {
+            const el = document.getElementById('refLink');
+            if(!userAddress) return alert("Connect wallet first!");
+            el.select();
+            document.execCommand('copy');
+            alert("Referral link copied!");
+        }
+
+        const ctx = document.getElementById('tokenChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Liquidity', 'Ecosystem Nodes', 'Core Development', 'Presale Phase', 'Strategic Marketing'],
+                datasets: [{
+                    data: [40, 25, 20, 10, 5],
+                    backgroundColor: ['#4facfe', '#00f2fe', '#0ea5e9', '#0284c7', '#38bdf8'],
+                    borderWidth: 0
+                }]
+            },
+            options: { plugins: { legend: { display: false } }, cutout: '85%' }
+        });
+    </script>
+</body>
+</html>
